@@ -1,0 +1,355 @@
+.main {
+    width:100vw;
+    overflow-x:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color:#b5b6d2c7;
+  }
+  
+  .nav {
+    width:20%;
+    height:750px;
+    background-color:#1F2544;
+    padding:34px 0px;
+  }
+  
+  .right {
+    width:80%;
+    height:750px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+  }
+  
+  .top {
+    width:100%;
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    padding-left:34px;
+  }
+  
+  .logo {
+    margin-right:18px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:center;
+  }
+  
+  .name {
+    font-size:22px;
+    font-weight:500;
+    color:#ffff;
+  }
+  
+  .ul {
+    margin:38px 0px;
+  }
+  
+  .li {
+    width:100%;
+    height:45px;
+    padding-left:38px;
+    color:#ffffffac;
+    font-size:20px;
+    font-weight:300;
+    margin:28px 0px;
+    display:flex;
+    align-items:center;
+  }
+  
+  .mark {
+    font-weight:400;
+    font-size:22px;
+    color:#ffffffec;
+  }
+  
+  .highlight {
+    background-color:#ffffff14;
+  }
+  
+  .tab {
+    width:70%;
+    height:190px;
+    background-color:#ffffff;
+    border-radius:24px;
+    background-color:#1F2544;
+    position:relative;
+  }
+  
+  .yellow {
+    position:absolute;
+    right:0;
+    bottom:10px;
+    width:200px;
+    height:85%;
+    border-radius:50%;
+    background-color:#fcc33d;
+    z-index:2;
+  }
+  
+  .orange {
+    position:absolute;
+    right:100px;
+    bottom:0px;
+    width:200px;
+    height:85%;
+    border-radius:50%;
+    background-color:#fc7c5c;
+    z-index:1;
+  }
+  
+  .overlay {
+    position:absolute;
+    z-index:3;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:85px;
+    background-color:#ffff;
+    border-radius:0px 0px 24px 24px;
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+  }
+
+  .pf {
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background-color:#ffff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transform:translate(38px, -38px);
+  }
+
+  .inner_circle {
+    width:94px;
+    height:94px;
+    background-color:#f09f2e;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+
+  .details {
+    height:55%;
+    transform:translate(54px,-12px);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+    align-items:flex-start;
+  }
+
+  .faculty_name {
+    font-size:20px;
+    font-weight:600;
+    color:#3a3788;
+  }
+
+  .designation {
+    font-size:16px;
+    font-weight:300;
+    color:#3a3788;
+    margin-top:16px;
+  }
+
+  .container {
+    width:70%;
+    height:160px;
+    margin:28px;
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+  }
+
+  .batch {
+    width:240px;
+    height:100%;
+    border-radius:16px;
+    background-color:#fd704c;
+    margin-right:24px;
+    padding:20px;
+  }
+
+  .heading {
+    color:#ffff;
+    font-size:18px;
+    font-weight:500;
+    margin-top:6px;
+  }
+
+  .li_ele {
+    float:left;
+    margin:0px 4px 0px 0px;
+  }
+
+  .duration {
+    font-size:16px;
+    font-weight:400;
+    color:#ffff;
+  }
+
+  .menu {
+    display:none;
+  }
+
+  .dropdown {
+    width:100%;
+    height:100%;
+    background-color:#1F2544;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+    transition:all 0.3s ease-in-out;
+  }
+
+  .cross {
+    position:absolute;
+    top:24px;
+    right:24px;
+}
+
+  .bg_y {
+    background-color:#f09f2e;
+  }
+  
+  .bg_dark {
+    background-color:#3a3788;
+  }
+
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+
+    .top {
+      padding-left:22px;
+    }
+
+    .logo {
+      margin-right:10px;
+    }
+
+    .nav {
+      width:25%;
+    }
+
+    .li {
+      padding-left:22px;
+      font-size:18px;
+      margin:14px 0px;
+    }
+
+    .tab {
+        width:90%;
+    }
+
+    .container {
+      width:90%;
+      height:180px;
+    }
+
+    .pf {
+      transform:translate(30px, -38px);
+    }
+
+    .details {
+      transform:translate(34px,-10px);
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    .nav {
+        position:fixed;
+        top:0;
+        left:0;
+        z-index:999;
+        width:100%;
+        height:64px;
+        padding:0px 16px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+    }
+
+    .ul {
+        display:none;
+    }
+
+    .top {
+        width:auto;
+        padding-left:0px;
+    }
+
+    .right {
+        width:90%;
+        height:auto;
+        padding:0px;
+    }
+
+    .tab {
+        width:100%;
+        height:280px;
+        padding:28px 0px;
+        margin-top:84px;
+    }
+
+    .yellow {
+        display:none;
+    }
+
+    .orange {
+        display:none;
+    }
+
+    .overlay {
+        width:100%;
+        height:50%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
+    }
+
+    .pf {
+      width:100px;
+      height:100px;
+      transform:translate(0px,-55px);
+      margin-right:16px;
+    }
+
+    .details {
+        transform:translate(0px,-45px);
+    }
+
+    .menu {
+        display:block;
+    }
+
+    .container {
+        width:100%;
+        height:auto;
+        flex-direction:column;
+    }
+
+    .batch {
+        margin-right:0px;
+        margin:8px 0px;
+    }
+
+    .faculty_name {
+      width:100%;
+      text-align:center;
+    }
+
+    .li_ele {
+      float:none;
+      text-align:center;
+    }
+
+}
