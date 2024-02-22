@@ -39,13 +39,16 @@ export default function loginForm() {
       if (response.ok) {
         setError('');
         const result = await response.json();
+        console.log(result);
+
+        sessionStorage.setItem("userDetails", JSON.stringify(result));
         
-        if(result === 'Student') {
-          router.push('/student/home');
-        } else if(result === 'admin') {
+        if(result.userRole === 'Student') {
+          router.push('/student/profile');
+        } else if(result.userRole === 'Admin') {
           router.push('/admin/home');
-        } else if (result === 'faculty') {
-          router.push('/faculty/home');
+        } else if (result.userRole === 'Faculty') {
+          router.push('/faculty/profile');
         }
       } else {
         setError('Invalid username or password');
@@ -82,4 +85,3 @@ export default function loginForm() {
     )
   );
 };
-

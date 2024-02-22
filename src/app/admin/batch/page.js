@@ -83,6 +83,7 @@ export default function Home() {
             <p className={styles.duration}>[Jan - April]</p>
         </div>
         </Link>
+        <Link href="/admin/batch/python">
           <div className={`${styles.batch} ${styles.bg_orange}`}>
             <Image
             src="/software.png"
@@ -93,6 +94,7 @@ export default function Home() {
             <h1 className={styles.heading}>AI with PYTHON</h1>
             <p className={styles.duration}>[Jan - April]</p>
           </div>
+          </Link>
           <Link href="/admin/batch/java">
           <div className={`${styles.batch} ${styles.bg_dark}`}>
             <Image
@@ -105,6 +107,7 @@ export default function Home() {
             <p className={styles.duration}>[Jan - April]</p>
           </div>
           </Link>
+          <Link href="/admin/batch/dsa">
           <div className={`${styles.batch} ${styles.bg_y}`}>
             <Image
             src="/coding.png"
@@ -112,9 +115,11 @@ export default function Home() {
             width={64}
             height={64}
             />
-            <h1 className={styles.heading}>DSA</h1>
+            <h1 className={styles.heading}>DSA (using C++)</h1>
             <p className={styles.duration}>[Jan - April]</p>
           </div>
+          </Link>
+          <Link href="/admin/batch/cplusplus">
           <div className={`${styles.batch} ${styles.bg_orange}`}>
             <Image
             src="/software.png"
@@ -122,9 +127,10 @@ export default function Home() {
             width={64}
             height={64}
             />
-            <h1 className={styles.heading}>C/C++</h1>
+            <h1 className={styles.heading}>Fundamentals of C++</h1>
             <p className={styles.duration}>[Jan - April]</p>
           </div>
+          </Link>
           <Link href="/admin/batch/leadership">
           <div className={`${styles.batch} ${styles.bg_dark}`}>
             <Image

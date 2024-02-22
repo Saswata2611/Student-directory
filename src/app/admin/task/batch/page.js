@@ -260,7 +260,7 @@ export default function Home() {
               <td className={`${styles.td}`}>{item.batchMonth}</td>
               <td className={`${styles.td}`}>{item.batchName}</td>
               <td className={`${styles.td}`}>
-              <button className={styles.update} onClick={() => {setDisplay('flex'); setbatch_name(item.batchName);}}>update task</button>
+              <button className={styles.update} onClick={() => {setDisplay('flex'); setbatch_name(item.batchName);}}>Allocate Task</button>
               {' '}
               </td>
             </tr>

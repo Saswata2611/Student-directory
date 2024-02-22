@@ -17,6 +17,7 @@ export default function Users() {
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedUser, setSelectedUser] = useState(null);
   const [displayDelete, setDisplayDelete] = useState('none');
+  const [show, setShow] = useState('none');
 
 useEffect(() => {
     getDataDebounced();
@@ -25,7 +26,7 @@ useEffect(() => {
 
 const getData = async () => {
     try {
-        const response = await fetch('https://main-project-for-avik-sir.onrender.com/read');
+        const response = await fetch('http://192.168.29.134:1013/read');
         const result = await response.json();
         setData(result);
         console.log(result);
@@ -68,7 +69,7 @@ const getDataDebounced = _debounce(getData, 300);
   const updateUserRole = async (userName, newRole) => {
     try {
       const response = await fetch(
-        `https://main-project-for-avik-sir.onrender.com/update?username=${userName}&role=${newRole}`,
+        `http://192.168.29.134:1013/update?username=${userName}&role=${newRole}`,
         {
           method: 'POST',
         }
@@ -89,7 +90,7 @@ const getDataDebounced = _debounce(getData, 300);
   const deleteUser = async (userName) => {
     try {
       const response = await fetch(
-        `https://main-project-for-avik-sir.onrender.com/delete?username=${userName}`, // Use query parameter for username
+        `http://192.168.29.134:1013/delete?username=${userName}`, // Use query parameter for username
         {
           method: 'DELETE',
           headers: {
@@ -134,8 +135,57 @@ const getDataDebounced = _debounce(getData, 300);
 
   const renderData = foundUsers.length > 0 ? foundUsers : data;
 
+  const notifyUser = async (username, message) => {
+    try {
+      const response = await fetch(`http://192.168.29.134:1013/notify?username=${username}&message=${message}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        // No need to include message in the body
+      });
+  
+      if (response.ok) {
+        console.log(`Notification sent successfully to user: ${username}`);
+        // Perform any additional actions after a successful notification
+      } else {
+        console.error('Failed to send notification:', response.statusText);
+        // Handle the error case
+      }
+    } catch (error) {
+      console.error('Error sending notification:', error);
+    }
+  };  
+
+  const [notificationMessage, setNotificationMessage] = useState('');
+
+  const handleShow = (userName) => {
+    setSelectedUser(userName);
+    setShow('flex');
+  };
+
+  const handleMssgSubmit = () => {
+    if (selectedUser && notificationMessage) {
+      notifyUser(selectedUser, notificationMessage);
+      setShow('none');
+      setNotificationMessage(''); // Reset notification message state
+    }
+  };
+
     return (
       <main className={styles.main}>
+        <div className={`${styles.popup} ${styles.notify}`} style={{ display: `${show}`, height: '185px' }}>
+        <Image className={styles.cross} onClick={() => setShow('none')}
+          src="/cross(1).svg"
+          alt=""
+          width={14}
+          height={14}
+        />
+        <input type="text" className={styles.message} placeholder="Enter your message" value={notificationMessage} onChange={(e) => setNotificationMessage(e.target.value)}></input>
+        <button className={styles.submitButton} onClick={handleMssgSubmit}> 
+          Notify User
+        </button>
+        </div>
               <div className={styles.popup} style={{ display: `${display}` }}>
               <Image className={styles.cross} onClick={() => setDisplay('none')}
               src="/cross(1).svg"
@@ -239,7 +289,7 @@ const getDataDebounced = _debounce(getData, 300);
         </thead>
           {renderData.map((item, index) => (
             <tr key={index} className={styles.tr}>
-              <td className={`${styles.td}`}>{item.userName}</td>
+              <td className={`${styles.td}`} onClick={() => handleShow(item.userName)}>{item.userName}</td>
               <td className={`${styles.td}`}>{item.userRole}</td>
               <td className={`${styles.td}`}>{item.organization_name}</td>
               <td className={`${styles.td} ${styles.pID}`}>{item.permanent_id !== null ? item.permanent_id : 'null'}</td>

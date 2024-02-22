@@ -265,7 +265,7 @@ export default function Home() {
               <td className={`${styles.td}`}>
               {/* Display a select option for task IDs */}
               <select className={styles.select} value={selectedTaskId} onChange={(e) => setSelectedTaskId(e.target.value)}>
-                {item.task_id !== null ? (
+                {item.task_id !== null && item.task_id !== undefined ? (
                     item.task_id.map((taskId, index) => (
                     <option key={index} value={taskId}>
                     {taskId}
@@ -277,7 +277,7 @@ export default function Home() {
                 </select>
             </td>
             <td className={`${styles.td}`}>
-              <button className={styles.update} onClick={() => {setDisplay('flex'); setUsername(item.userName); }}>update task</button>
+              <button className={styles.update} onClick={() => {setDisplay('flex'); setUsername(item.userName); }}>Allocate Task</button>
               {' '}
               </td>
             </tr>
