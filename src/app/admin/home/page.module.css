@@ -259,6 +259,7 @@
         width:95%;
         height:345px;
         padding:28px 0px;
+        transform:translateY(38px);
     }
 
     .yellow {
@@ -289,7 +290,7 @@
     }
 
     .logout {
-      top:104px;
+      top:94px;
     }
 
 }

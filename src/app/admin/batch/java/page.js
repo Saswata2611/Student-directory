@@ -317,12 +317,12 @@ const handleDeleteStudent = async () => {
       <nav className={styles.nav}>
         <div className={styles.top}>
           <Image className={styles.logo}
-          src="/logo.jpg"
+          src="/logo.svg"
           alt=""
           width={44}
           height={44}
           />
-          <div className={styles.name}>NiiT</div>
+          <div className={styles.name}>Student Directory</div>
         </div>
           <ul className={styles.ul}>
             <li className={`${styles.li} ${styles.mark}`}>Dashboard</li>

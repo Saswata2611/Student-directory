@@ -1,22 +1,29 @@
-'use client'
+'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import styles from "./page.module.css";
 import { useRouter } from 'next/navigation';
 import Loader from './loader/page';
 
-export default function loginForm() {
+export default function LoginForm() {
   const router = useRouter();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
 
   const [error, setError] = useState('');
 
   const [loader, setLoader] = useState(true);
 
   setTimeout(() => {
-    setLoader('false');
+    setLoader(false);
   }, 3000);
 
   const handleChange = (e) => {
@@ -53,35 +60,48 @@ export default function loginForm() {
       } else {
         setError('Invalid username or password');
       }
-    }catch (error) {
+    } catch (error) {
       console.error('Error logging in:', error);
       setError('An error occurred. Please try again later.');
     }
   };
 
   return (
-    (
-      (loader === true ) ? (
-        <Loader />
-      ) : (
-        <main className={styles.main}>
+    (loader === true) ? (
+      <Loader />
+    ) : (
+      <main className={styles.main}>
         <form className={styles.myform}>
           <h1 className={styles.h1}>Log In</h1>
           {error && <p style={{ color: 'red' }}>{error}</p>}
-          <label className={`${styles.label}`}>
+          <label className={styles.label}>
             Full Name:
             <input className={styles.input} type="text" name="username" value={username} onChange={handleChange} spellCheck="false" />
           </label>
-          <label className={`${styles.label}`}>
+          <label className={`${styles.label}`} style={{ position: 'relative' }}>
             Password:
-            <input className={styles.input} type="password" name="password" value={password} onChange={handleChange} spellCheck="false" />
+            <input
+              className={`${styles.input} ${styles.password}`}
+              type={passwordVisible ? 'text' : 'password'}
+              name="password"
+              value={password}
+              onChange={handleChange}
+              spellCheck="false"
+            />
+            <Image
+              className={`${styles.eye} ${passwordVisible ? styles.open : styles.close}`}
+              src={passwordVisible ? "/eye-open.png" : "/eye-close.png"}
+              alt=""
+              width={20}
+              height={20}
+              onClick={togglePasswordVisibility}
+            />
           </label>
           <div className={styles.btn_div}>
-          <button type="submit" className={styles.button} onClick={handleSubmit}>Submit</button>
+            <button type="submit" className={styles.button} onClick={handleSubmit}>Submit</button>
           </div>
         </form>
-        </main>
-      )
+      </main>
     )
   );
-};
+}

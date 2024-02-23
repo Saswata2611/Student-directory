@@ -193,8 +193,13 @@ export default function Home() {
       </div>
       <nav className={styles.nav}>
         <div className={styles.top}>
-          <Image className={styles.logo} src="/logo.jpg" alt="" width={44} height={44} />
-          <div className={styles.name}>NiiT</div>
+          <Image className={styles.logo}
+          src="/logo.svg"
+          alt=""
+          width={44}
+          height={44}
+          />
+          <div className={styles.name}>Student Directory</div>
         </div>
         <ul className={styles.ul}>
           <li className={`${styles.li} ${styles.mark}`}>Dashboard</li>

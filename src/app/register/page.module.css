@@ -30,6 +30,12 @@
     margin:12px 0px;
 }
 
+.eye {
+    position:absolute;
+    top:24px;
+    right:6px;
+}
+
 .input {
     width:100%;
     height:36px;

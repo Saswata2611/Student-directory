@@ -236,12 +236,12 @@ const getDataDebounced = _debounce(getData, 300);
       <nav className={styles.nav}>
         <div className={styles.top}>
           <Image className={styles.logo}
-          src="/logo.jpg"
+          src="/logo.svg"
           alt=""
           width={44}
           height={44}
           />
-          <div className={styles.name}>NiiT</div>
+          <div className={styles.name}>Student Directory</div>
         </div>
           <ul className={styles.ul}>
             <li className={`${styles.li} ${styles.mark}`}>Dashboard</li>
@@ -293,7 +293,18 @@ const getDataDebounced = _debounce(getData, 300);
               <td className={`${styles.td}`}>{item.userRole}</td>
               <td className={`${styles.td}`}>{item.organization_name}</td>
               <td className={`${styles.td} ${styles.pID}`}>{item.permanent_id !== null ? item.permanent_id : 'null'}</td>
-              <td className={`${styles.td}`}>{item.task_id !== null ? item.task_id : 'null'}</td>
+              {/* <td className={`${styles.td}`}>{item.task_id !== null ? item.task_id : 'null'}</td> */}
+              <td className={`${styles.td}`}>
+                {item.task_id !== null && item.task_id !== undefined ? (
+                <select className={styles.select}>
+                {item.task_id.map(taskId => (
+                <option key={taskId} value={taskId} className={styles.option}>
+                {taskId}
+                </option>
+                ))}
+                </select>
+                ) : 'null'}
+              </td>
               <td className={`${styles.td}`}>{item.task_status}</td>
               <td className={`${styles.td}`}>{item.userDesignation}</td>
               <td className={`${styles.td}`}>{item.join_date}</td>

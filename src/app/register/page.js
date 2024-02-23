@@ -4,6 +4,7 @@ import { useState } from 'react';
 import styles from "./page.module.css";
 import Loader from '../loader/page';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function NewEntryForm () {
   const initialFormData = {
@@ -20,6 +21,12 @@ export default function NewEntryForm () {
   const [formData, setFormData] = useState(initialFormData);
   const [display, setDisplay] = useState('none');
   const [loader, setLoader] = useState(true);
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
 
   setTimeout(() => {
     setLoader('false');
@@ -72,10 +79,25 @@ export default function NewEntryForm () {
           </label>
           </div>
           <div className={styles.wrap}>
-          <label className={`${styles.label} ${styles.w_50} ${styles.m_right}`}>
-            Password:
-            <input className={styles.input} type="password" name="password" value={formData.password} onChange={handleChange} spellCheck="false" />
-          </label>
+          <label className={`${styles.label} ${styles.w_50} ${styles.m_right}`} style={{ position: 'relative' }}>
+              Password:
+              <input
+                className={styles.input}
+                type={passwordVisible ? 'text' : 'password'}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                spellCheck="false"
+              />
+              <Image
+                className={`${styles.eye} ${passwordVisible ? styles.open : styles.close}`}
+                src={passwordVisible ? "/eye-open.png" : "/eye-close.png"}
+                alt=""
+                width={20}
+                height={20}
+                onClick={togglePasswordVisibility}
+              />
+            </label>
           <label className={`${styles.label} ${styles.w_50}`}>
           Role:
           <select className={styles.input} name="role" value={formData.role} onChange={handleChange}>
