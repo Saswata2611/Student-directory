@@ -74,11 +74,6 @@ export default function Home() {
 
     const getDataDebounced = _debounce(getData, 300);
 
-    const logout = () => {
-      sessionStorage.removeItem("userDetails");
-      router.push('/');
-    }
-
   return (
     <main className={styles.main}>
         <div className={styles.dropdown} style={{ transform: `${transform}` }}>
@@ -91,8 +86,8 @@ export default function Home() {
             />
             <ul>
             <li className={`${styles.li} ${styles.mark}`}>Dashboard</li>
-            <li className={`${styles.li} ${styles.highlight}`}><Link href="/admin/home">Home</Link></li>
-            <li className={`${styles.li}`}><Link href="/admin/community">Community</Link></li>
+            <li className={`${styles.li}`}><Link href="/admin/home">Home</Link></li>
+            <li className={`${styles.li} ${styles.highlight}`}>Community</li>
             <li className={styles.li}><Link href="/admin/batch">Batches</Link></li>
             <li className={styles.li}><Link href="/admin/users">Users</Link></li>
             <li className={styles.li}><Link href="/admin/task">Task Allocation</Link></li>
@@ -110,8 +105,8 @@ export default function Home() {
         </div>
           <ul className={styles.ul}>
             <li className={`${styles.li} ${styles.mark}`}>Dashboard</li>
-            <li className={`${styles.li} ${styles.highlight}`}><Link href="/admin/home">Home</Link></li>
-            <li className={`${styles.li}`}><Link href="/admin/community">Community</Link></li>
+            <li className={`${styles.li}`}><Link href="/admin/home">Home</Link></li>
+            <li className={`${styles.li} ${styles.highlight}`}><Link href="/admin/community">Community</Link></li>
             <li className={styles.li}><Link href="/admin/batch">Batches</Link></li>
             <li className={styles.li}><Link href="/admin/users">Users</Link></li>
             <li className={styles.li}><Link href="/admin/task">Task Allocation</Link></li>
@@ -125,68 +120,25 @@ export default function Home() {
           />
       </nav>
       <div className={styles.right}>
-        <button className={styles.logout} onClick={logout}>Logout</button>
-        <div className={styles.tab}>
-          <div className={styles.yellow}></div>
-          <div className={styles.orange}></div>
-          <div className={styles.overlay}>
-            <div className={styles.display}>
-              <div className={`${styles.tab_logo} ${styles.bg_orange}`}>
+        <div className={styles.container}>
+            <div className={`${styles.tab} ${styles.yellow}`}>
                 <Image
-                src="/hat.svg"
+                src="/upload.png"
                 alt=""
-                width={30}
-                height={30}
+                width={104}
+                height={104}
                 />
-              </div>
-              <div className={styles.info}>
-                <h2 className={styles.heading}>Faculty</h2>
-                <p className={styles.num}>{faculty}</p>
-              </div>
+                <h1 className={styles.heading}>Upload an Excel File</h1>
             </div>
-            <div className={styles.display}>
-              <div className={`${styles.tab_logo} ${styles.bg_y}`}>
+            <div className={`${styles.tab} ${styles.orange}`}>
                 <Image
-                src="/student.svg"
+                src="/eye.png"
                 alt=""
-                width={30}
-                height={30}
+                width={104}
+                height={104}
                 />
-              </div>
-              <div className={styles.info}>
-                <h2 className={styles.heading}>Student</h2>
-                <p className={styles.num}>{student}</p>
-              </div>
+                <h1 className={styles.heading} style={{ textAlign: 'center', width: '100%', color: '#ffff' }}>See all community members</h1>
             </div>
-            <div className={styles.display}>
-              <div className={`${styles.tab_logo} ${styles.bg_dark}`}>
-                <Image
-                src="/fork.svg"
-                alt=""
-                width={30}
-                height={30}
-                />
-              </div>
-              <div className={styles.info}>
-                <h2 className={styles.heading}>Intern</h2>
-                <p className={styles.num}>{intern}</p>
-              </div>
-            </div>
-            <div className={styles.display}>
-              <div className={`${styles.tab_logo} ${styles.bg_blue}`}>
-                <Image
-                src="/community.svg"
-                alt=""
-                width={30}
-                height={30}
-                />
-              </div>
-              <div className={styles.info}>
-                <h2 className={styles.heading}>Members</h2>
-                <p className={styles.num}>{member}</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </main>

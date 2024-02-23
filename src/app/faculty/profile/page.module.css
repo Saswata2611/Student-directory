@@ -182,8 +182,7 @@
   
   .warnings {
     width:100%;
-    min-height:200px;
-    height:auto;
+    height:200px;
     background-color:aliceblue;
     display:flex;
     flex-direction:column;
@@ -204,9 +203,16 @@
   .notify {
     width:90%;
     height:38px;
-    background-color:#fb623c;
+    background-color:rgba(176, 217, 254, 0.741);
+    border:0.67px solid rgba(35, 152, 255, 0.741);
     border-radius:4px;
     margin:12px 0px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#1f2857;
+    font-weight:400;
+    cursor:pointer;
   }
   
   .logout {

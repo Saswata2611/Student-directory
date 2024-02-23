@@ -16,15 +16,24 @@ export default function Home() {
 
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const [mssg, setMssg] = useState('');
+    const [noti, setNoti] = useState([]);
+    const [show, setShow] = useState('none');
+
     useEffect(() => {
       const storedData = sessionStorage.getItem("userDetails");
     
       if (storedData) {
         const parsedData = JSON.parse(storedData);
+        // console.log(parsedData);
         setUserDetails(parsedData);
         setPassword(parsedData.userPassword);
+
+        // console.log(parsedData.userName);
+
+        getnotify(parsedData.userName);
       } else {
-        router.push('/');
+        router.push('/login');
       }
     }, []);
 
@@ -42,7 +51,7 @@ export default function Home() {
 
     const logout = () => {
       sessionStorage.removeItem("userDetails");
-      router.push('/login');
+      router.push('/');
     }
 
     const handlePasswordChange = async () => {
@@ -72,12 +81,46 @@ export default function Home() {
       }
     }
 
+    const getnotify = async (userName) => {
+      try {
+        // console.log(userDetails.userName);
+        const response = await fetch(`http://192.168.29.134:1013/readnotification?username=${userName}`)
+        const result = await response.json();
+
+        if(response.ok) {
+          // console.log(result[result.length-1]);
+          setMssg(result[result.length-1]);
+          setNoti(result);
+        } else {
+          console.log("error");
+        }
+      } catch (error) {
+        console.error('Error occurred :', error);
+      }
+    }
+
   return (
     <main className={styles.main}>
       {/* conditionally render the page content if userDetails is not null, i.e, if the user is logged in. */}
       {
       userDetails ? (
         <>
+        <div className={`${styles.popup} ${styles.display}`} style={{ display: `${show}` }}>
+          <Image className={styles.cross}
+            src="/cross(1).svg"
+            alt=""
+            width={14}
+            height={14}
+            onClick={() => setShow('none')}
+          />
+          <p className={styles.p} style={{ width: '100%', textAlign: 'center' }}>All Notifications</p>
+          <hr className={styles.hr}></hr>
+          {noti.map((notification, index) => (
+          <div key={index} className={styles.notify} style={{ width: '100%', height: '36px' }}>
+          {notification}
+          </div>
+          ))}
+        </div>
           <div className={styles.popup} style={{ display: `${display}` }}>
             <Image className={styles.cross}
             src="/cross(1).svg"
@@ -100,9 +143,9 @@ export default function Home() {
               />
               <ul>
               <li className={`${styles.li} ${styles.mark}`}>Dashboard</li>
-              <li className={`${styles.li} ${styles.highlight}`}><Link href="/faculty/profile">Profile</Link></li>
-              <li className={styles.li}><Link href="/faculty/batch">Batches</Link></li>
-              <li className={styles.li}><Link href="/faculty/task">Task Allocation</Link></li>
+              <li className={`${styles.li} ${styles.highlight}`}><Link href="/student/profile">Profile</Link></li>
+              <li className={styles.li}><Link href="/student/batch">Batches</Link></li>
+              <li className={styles.li}><Link href="/student/task">Tasks</Link></li>
             </ul>
           </div>
         <nav className={styles.nav}>
@@ -117,9 +160,9 @@ export default function Home() {
           </div>
             <ul className={styles.ul}>
               <li className={`${styles.li} ${styles.mark}`}>Dashboard</li>
-              <li className={`${styles.li} ${styles.highlight}`}><Link href="/faculty/profile">Profile</Link></li>
-              <li className={styles.li}><Link href="/faculty/batch">Batches</Link></li>
-              <li className={styles.li}><Link href="/faculty/task">Task Allocation</Link></li>
+              <li className={`${styles.li} ${styles.highlight}`}><Link href="/student/profile">Profile</Link></li>
+              <li className={styles.li}><Link href="/student/batch">Batches</Link></li>
+              <li className={styles.li}><Link href="/student/task">Tasks</Link></li>
             </ul>
             <Image className={styles.menu}
             src="/burger-menu.svg"
@@ -167,7 +210,7 @@ export default function Home() {
           </div>
           <div className={styles.warnings}>
             <p className={styles.p}>Notifications</p>
-            <div className={styles.notify}>blah blah blah</div>
+            <div className={styles.notify} onClick={() => setShow('flex')}>{mssg}</div>
           </div>
         </div>
         </div>

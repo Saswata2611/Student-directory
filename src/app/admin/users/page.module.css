@@ -63,6 +63,7 @@
 }
 
 .right {
+  position:relative;
   width:80%;
   display:flex;
   justify-content:center;
@@ -276,6 +277,7 @@
 .notify {
   width:260px;
   height:200px;
+  transform:translate(0px, -64px);
 }
 
 .message {
@@ -315,6 +317,10 @@
   .search_btn {
     width:45px;
     height:45px;
+  }
+
+  .notify {
+    transform:translate(-54px, -64px);
   }
 }
 
@@ -363,6 +369,10 @@
   .search_icon {
     width:20px;
     height:20px;
+  }
+
+  .notify {
+    transform:translate(-50%,-25%);
   }
 
 }

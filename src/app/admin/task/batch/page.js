@@ -179,7 +179,7 @@ export default function Home() {
           <li className={`${styles.li}`}>
             <Link href="/admin/home">Home</Link>
           </li>
-          <li className={styles.li}>Community</li>
+          <li className={`${styles.li}`}><Link href="/admin/community">Community</Link></li>
           <li className={styles.li}>
             <Link href="/admin/batch">Batches</Link>
           </li>
@@ -201,7 +201,7 @@ export default function Home() {
           <li className={`${styles.li}`}>
             <Link href="/admin/home">Home</Link>
           </li>
-          <li className={styles.li}>Community</li>
+          <li className={`${styles.li}`}><Link href="/admin/community">Community</Link></li>
           <li className={styles.li}>
             <Link href="/admin/batch">Batches</Link>
           </li>

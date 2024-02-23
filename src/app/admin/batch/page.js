@@ -55,7 +55,7 @@ export default function Home() {
           <ul className={styles.ul}>
             <li className={`${styles.li} ${styles.mark}`}>Dashboard</li>
             <li className={`${styles.li}`}><Link href="/admin/home">Home</Link></li>
-            <li className={styles.li}>Community</li>
+            <li className={`${styles.li}`}><Link href="/admin/community">Community</Link></li>
             <li className={`${styles.li} ${styles.highlight}`}><Link href="/admin/batch">Batches</Link></li>
             <li className={styles.li}><Link href="/admin/users">Users</Link></li>
             <li className={styles.li}><Link href="/admin/task">Task Allocation</Link></li>
