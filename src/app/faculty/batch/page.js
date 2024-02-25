@@ -26,7 +26,7 @@ const fetchData = async () => {
     setUserDetails(parsedData);
 
     try {
-      const response = await fetch('http://192.168.29.134:1013/allBatch');
+      const response = await fetch('https://main-project-for-avik-sir.onrender.com/allBatch');
       const result = await response.json();
 
       console.log(parsedData);

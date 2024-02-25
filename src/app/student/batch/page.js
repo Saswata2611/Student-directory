@@ -28,7 +28,7 @@ export default function Home() {
 
       // Fetch batch data based on batch_name
       try {
-        const response = await fetch(`http://192.168.29.134:1013/search-Batch-ByID?batch_name=${parsedData.allocated_batch}`);
+        const response = await fetch(`https://main-project-for-avik-sir.onrender.com/search-Batch-ByID?batch_name=${parsedData.allocated_batch}`);
         if (response.ok) {
           const batchDetails = await response.json();
           console.log(batchDetails);

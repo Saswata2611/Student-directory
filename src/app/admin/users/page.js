@@ -26,7 +26,7 @@ useEffect(() => {
 
 const getData = async () => {
     try {
-        const response = await fetch('http://192.168.29.134:1013/read');
+        const response = await fetch('https://main-project-for-avik-sir.onrender.com/read');
         const result = await response.json();
         setData(result);
         console.log(result);
@@ -69,7 +69,7 @@ const getDataDebounced = _debounce(getData, 300);
   const updateUserRole = async (userName, newRole) => {
     try {
       const response = await fetch(
-        `http://192.168.29.134:1013/update?username=${userName}&role=${newRole}`,
+        `https://main-project-for-avik-sir.onrender.com/update?username=${userName}&role=${newRole}`,
         {
           method: 'POST',
         }
@@ -90,7 +90,7 @@ const getDataDebounced = _debounce(getData, 300);
   const deleteUser = async (userName) => {
     try {
       const response = await fetch(
-        `http://192.168.29.134:1013/delete?username=${userName}`, // Use query parameter for username
+        `https://main-project-for-avik-sir.onrender.com/delete?username=${userName}`, // Use query parameter for username
         {
           method: 'DELETE',
           headers: {
@@ -137,7 +137,7 @@ const getDataDebounced = _debounce(getData, 300);
 
   const notifyUser = async (username, message) => {
     try {
-      const response = await fetch(`http://192.168.29.134:1013/notify?username=${username}&message=${message}`, {
+      const response = await fetch(`https://main-project-for-avik-sir.onrender.com/notify?username=${username}&message=${message}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

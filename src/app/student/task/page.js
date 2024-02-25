@@ -36,7 +36,7 @@ export default function Home() {
           formDataObj.append('task_id', taskid);
           formDataObj.append('filename', formData.filename);
       
-          const response = await fetch(`http://192.168.29.134:1013/upload/submit`, {
+          const response = await fetch(`https://main-project-for-avik-sir.onrender.com/upload/submit`, {
             method: 'POST',
             body: formDataObj,
           });
@@ -74,7 +74,7 @@ export default function Home() {
       const fetchData = async (taskId) => {
         try {
           for (let i = 0; i < taskId.length; i++) {
-            const response = await fetch(`http://192.168.29.134:1013/searchtask?task_id=${taskId[i]}`);
+            const response = await fetch(`https://main-project-for-avik-sir.onrender.com/searchtask?task_id=${taskId[i]}`);
             const data = await response.json();
             console.log(data);
             if(data.taskdata.task_remarks !== 'Submitted') {

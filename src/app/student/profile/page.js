@@ -56,7 +56,7 @@ export default function Home() {
 
     const handlePasswordChange = async () => {
       try {
-        const response = await fetch(`http://192.168.29.134:1013/update/password?username=${userDetails.userName}&password=${password}&cpass=${confirmPassword}`, {
+        const response = await fetch(`https://main-project-for-avik-sir.onrender.com/update/password?username=${userDetails.userName}&password=${password}&cpass=${confirmPassword}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ export default function Home() {
     const getnotify = async (userName) => {
       try {
         // console.log(userDetails.userName);
-        const response = await fetch(`http://192.168.29.134:1013/readnotification?username=${userName}`)
+        const response = await fetch(`https://main-project-for-avik-sir.onrender.com/readnotification?username=${userName}`)
         const result = await response.json();
 
         if(response.ok) {

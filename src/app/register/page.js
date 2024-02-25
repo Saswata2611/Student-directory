@@ -41,7 +41,7 @@ export default function NewEntryForm () {
 
     try {
       const queryParams = new URLSearchParams(formData);
-      const response = await fetch(`http://192.168.29.134:1013/register?${queryParams}`, {
+      const response = await fetch(`https://main-project-for-avik-sir.onrender.com/register?${queryParams}`, {
         method: 'POST',
       });
 
