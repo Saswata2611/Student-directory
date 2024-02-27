@@ -207,7 +207,6 @@ const handleDeleteStudent = async () => {
 };
 
 
-
   return (
     <main className={styles.main}>
 
