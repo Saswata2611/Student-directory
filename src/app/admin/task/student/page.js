@@ -45,8 +45,7 @@ export default function Home() {
 
   const handleSearch = () => {
     const usersFound = data.filter((user) =>
-      user.userName.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (selectedRole === 'all' || user.userRole.toLowerCase() === selectedRole.toLowerCase())
+      user.userRole.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFoundUsers(usersFound);
   };  
@@ -114,7 +113,7 @@ export default function Home() {
     onClick={() => setDisplay('none')}
     />
     <div className={styles.success} style={{ display: `${success}` }}>Added task successfully</div>
-    <form enctype="multipart/form-data">
+    <form encType="multipart/form-data">
     <label className={styles.label}>
     User Name:
     <input

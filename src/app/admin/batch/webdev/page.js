@@ -255,26 +255,6 @@ const handleDeleteStudent = async () => {
         </div>
       </div>
 
-          <div className={styles.popup} style={{ display: `${display}`, height: '180px' }}>
-            <Image className={styles.cross} style={{ top: '16px', right: '16px', cursor: 'pointer' }}
-            src="/cross(1).svg"
-            alt=""
-            width={16}
-            height={16}
-            onClick={() => setDisplay('none')}
-            />
-        <label className={styles.label}>
-        Faculty:
-        <select className={styles.select} value={faculty} onChange={(e) => setFaculty(e.target.value)}>
-          {batchFaculty.map((faculty, facultyIndex) => (
-            <option className={styles.option} key={facultyIndex} value={faculty}>
-              {faculty}
-            </option>
-          ))}
-        </select>
-        <button className={styles.confirmDelete} style={{ width: '60%', borderRadius: '4px', marginTop: '16px' }}>Delete Faculty</button>
-          </label>
-          </div>
         <div className={styles.popup} style={{ display: `${show}`, height: '180px' }}>
             <Image className={styles.cross} style={{ top: '16px', right: '16px', cursor: 'pointer' }}
             src="/cross(1).svg"
