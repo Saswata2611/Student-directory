@@ -192,7 +192,6 @@ const handleDeleteStudent = async () => {
           },
         }
       );
-
       if (response.ok) {
         console.log(`Student deleted successfully: ${student}`);
         setShow('none');
