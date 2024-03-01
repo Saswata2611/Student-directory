@@ -175,7 +175,7 @@ export default function Home() {
         </thead>
           {taskData.map((item, index) => (
             <tr key={index} className={styles.tr}>
-              <td className={`${styles.td}`}>{item.taskdata.task_name}</td>
+              <td className={`${styles.td}`}>{item.taskdata.task_Name}</td>
               <td className={`${styles.td}`}>{item.task_id}</td>
               <td className={`${styles.td} ${styles.pID}`}>{item.taskdata.task_file !== null ? <Link href={item.taskdata.task_file}><button className={styles.download}>Download Task File</button></Link> : 'null'}</td>
               <td className={`${styles.td}`}><button className={styles.upload} onClick={() => handleClick(item.task_id)}>Submit Task</button></td>
