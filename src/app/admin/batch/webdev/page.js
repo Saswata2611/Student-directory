@@ -361,7 +361,7 @@ const handleDeleteStudent = async () => {
                 <td className={`${styles.td}`} onClick={() => handleDeleteClick(item.batchName)}>{item.batchName}</td>
                 <td className={`${styles.td}`}>{item.batchMonth}</td>
                 <td className={`${styles.td}`}>{item.startDate}</td>
-                <td className={`${styles.td}`} onClick={() => handleStudentClick(item)} style={{ cursor: 'pointer' }}>{item.batchUsers.length === 0 ? 'null' : item.batchUsers[0]}</td>
+                <td className={`${styles.td}`} onClick={() => handleStudentClick(item)} style={{ cursor: 'pointer' }}>{ item.batchUsers[0]}</td>
                 <td className={`${styles.td}`} onClick={() => handleFacultyClick(item)} style={{ cursor: 'pointer' }}>{item.batch_faculty === null ? 'null' : item.batch_faculty[0]}</td>
                 <td className={`${styles.td}`}>{item.task_id === null ? 'null' : item.task_id}</td>
                 <td className={`${styles.td}`}>{item.task_status === null ? 'null' : item.task_status}</td>
