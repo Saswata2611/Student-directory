@@ -20,6 +20,7 @@ export default function Home() {
   const [selectedTaskId, setSelectedTaskId] = useState(null);
 
   const [username, setUsername] = useState('');
+  const [popupDisplay, setPopupDisplay] = useState('none');
 
   const initialFormData = {
     username: username,
@@ -43,10 +44,28 @@ export default function Home() {
 
   const getDataDebounced = _debounce(getData, 300);
 
+  // const handleSearch = () => {
+  //   const usersFound = data.filter((user) =>
+  //     user.userRole.toLowerCase().includes(searchQuery.toLowerCase())
+  //   );
+  //   setFoundUsers(usersFound);
+  // };
+
   const handleSearch = () => {
-    const usersFound = data.filter((user) =>
-      user.userRole.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const usersFound = data.filter((user) => {
+      const userRoleMatch = user.userRole.toLowerCase().includes(searchQuery.toLowerCase());
+      const userNameMatch = user.userName.toLowerCase().includes(searchQuery.toLowerCase());
+      console.log(user.task_id);
+      
+      // Check if user.task_id exists and contains the searchQuery
+      var taskIdMatch = user.task_id ? user.task_id.some((taskId) =>
+        taskId.toLowerCase() === searchQuery.toLowerCase()
+      ) : false;
+      console.log(taskIdMatch);
+      
+      return userRoleMatch || userNameMatch || taskIdMatch;
+    });
+    
     setFoundUsers(usersFound);
   };  
 
@@ -101,6 +120,34 @@ export default function Home() {
   };  
   
   const renderData = foundUsers.length > 0 ? foundUsers : data;
+
+  const [tasks, setTasks] = useState([]);
+
+  const fetchTaskStatus = async (username) => {
+    try {
+      for (const user of data) {
+        if (username === user.userName) {
+          const taskIds = user.task_id;
+  
+          if (taskIds) {
+            for (const id of taskIds) {
+              try {
+                const response = await fetch(`https://main-project-for-avik-sir.onrender.com/searchtask?task_id=${id}`);
+                const result = await response.json();
+                console.log(result.taskdata.task_remarks);
+                console.log(result.taskdata.submitted_file);
+                setTasks((prevTasks) => [...prevTasks, { id: id, remarks: result.taskdata.task_remarks, submit: result.taskdata.submitted_file }]);
+              } catch (error) {
+                console.error('Error fetching task status for task_id:', id, error);
+              }
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching task status:', error);
+    }
+  };  
 
   return (
     <main className={styles.main}>
@@ -166,6 +213,27 @@ export default function Home() {
   </button>
   </form>
 </div>
+
+    <div className={styles.show} style={{ display: `${popupDisplay}` }}>
+        <Image
+          className={styles.cross}
+          src="/cross(1).svg"
+          alt=""
+          width={20}
+          height={20}
+          onClick={() => setPopupDisplay('none')}
+        />
+        <div className={styles._div}>
+        {tasks.map((task, index) => (
+          <>
+        <div className={styles.m_12} key={index}>
+        <p><span className={styles.id}>ID: </span>{task.id}</p>
+        <p><span className={styles.id}>Remarks: </span>{task.remarks === 'Submitted' ? <Link href={task.submit}><button className={styles.download}>Download</button></Link> : 'Pending'}</p>
+        </div>
+          </>
+        ))}
+        </div>
+    </div>
 
       <div className={styles.dropdown} style={{ transform: `${transform}` }}>
         <Image
@@ -260,6 +328,7 @@ export default function Home() {
                 <th className={`${styles.th}`}>Role</th>
                 <th className={`${styles.th}`}>Task ID</th>
                 <th className={`${styles.th}`}>Allocate Task</th>
+                <th className={`${styles.th}`}>Submitted Tasks</th>
               </tr>
             </thead>
             {renderData.map((item, index) => (
@@ -284,6 +353,7 @@ export default function Home() {
               <button className={styles.update} onClick={() => {setDisplay('flex'); setUsername(item.userName); }}>Allocate Task</button>
               {' '}
               </td>
+              <td className={`${styles.td}`}><button className={styles.view} onClick={() => {setPopupDisplay('flex'); fetchTaskStatus(item.userName); setTasks([]); }}>View</button></td>
             </tr>
             ))
           }

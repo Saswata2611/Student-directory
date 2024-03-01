@@ -14,6 +14,7 @@ export default function Home() {
   const [transform, setTransform] = useState('translateX(-100%)');
   const [userDetails, setUserDetails] = useState(null);
   const [batchData, setBatchData] = useState([]);
+  const [batch, setBatch] = useState('');
 
   useEffect(() => {
     getDataDebounced();
@@ -26,18 +27,32 @@ export default function Home() {
       const parsedData = JSON.parse(storedData);
       setUserDetails(parsedData);
 
+      const userName = parsedData.userName;
+
+      const response = await fetch(`https://main-project-for-avik-sir.onrender.com/read/username?username=${userName}`);
+      const result = await response.json();
+      console.log(result.allocated_batch);
+
+      // if (result.allocated_batch !== null) {
+      //   const data = result.allocated_batch;
+      //   setBatch(data);
+      // }
+
+      console.log(result.allocated_batch);
       // Fetch batch data based on batch_name
-      try {
-        const response = await fetch(`https://main-project-for-avik-sir.onrender.com/search-Batch-ByID?batch_name=${parsedData.allocated_batch}`);
-        if (response.ok) {
-          const batchDetails = await response.json();
-          console.log(batchDetails);
-          setBatchData((prevBatchData) => [...prevBatchData, batchDetails]);
-        } else {
-          console.error('Failed to fetch batch data');
-        }
-      } catch (error) {
-        console.error('Error fetching batch data:', error);
+      if (result.allocated_batch !== null) {
+        try {
+          const response = await fetch(`https://main-project-for-avik-sir.onrender.com/search-Batch-ByID?batch_name=${result.allocated_batch}`);
+          if (response.ok) {
+            const batchDetails = await response.json();
+            console.log(batchDetails);
+            setBatchData((prevBatchData) => [...prevBatchData, batchDetails]);
+          } else {
+            console.error('Failed to fetch batch data');
+          }
+        } catch (error) {
+          console.error('Error fetching batch data:', error);
+        }     
       }
     } else {
       router.push('/');

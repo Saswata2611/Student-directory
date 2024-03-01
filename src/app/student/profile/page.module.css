@@ -104,7 +104,7 @@
 .card {
   position:relative;
   width:320px;
-  height:446px;
+  height:460px;
   background-color:#ffff;
   box-shadow:4px 4px 32px rgba(0,0,0,0.15);
   border-radius:16px;
@@ -312,7 +312,7 @@
   position:absolute;
   top:50%;
   left:50%;
-  transform:translate(-10px,-50%);
+  transform:translate(0px,-50%);
   z-index:999;
   width:300px;
   height:240px;
@@ -346,10 +346,27 @@
   font-size:16px;
 }
 
+.btn_ch {
+  width:140px;
+  height:36px;
+  background:transparent;
+  border:0.67px solid #ffff;
+  color:#ffff;
+  margin:16px 0px 0px 16px;
+  transition:all 0.3s ease-in-out;
+  border-radius:4px;
+}
+
+.btn_ch:hover {
+  border:none;
+  background-color:#ffff;
+  color:#000;
+}
+
 @media only screen and (min-width: 601px) and (max-width: 900px) {
 
   .popup {
-    transform:translate(-59px,-50%);
+    transform:translate(-20%,-50%);
   }
 
   .top {
@@ -392,7 +409,7 @@
   }
 
   .card {
-    transform:translateY(38px);
+    transform:translateY(54px);
   }
 
   .ul {
@@ -409,7 +426,7 @@
   }
 
   .logout {
-    top:104px;
+    top:84px;
   }
 
   .top {

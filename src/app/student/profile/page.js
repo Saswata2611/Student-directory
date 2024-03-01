@@ -177,7 +177,7 @@ export default function Home() {
         <button className={styles.logout} onClick={logout}>logout</button>
         <div className={styles.card}>
           <div className={styles.back}>
-            <div className={styles.pic} onClick={() => setDisplay('flex')}>
+            <div className={styles.pic}>
               <Image
               src="/student.svg"
               alt=""
@@ -188,6 +188,7 @@ export default function Home() {
             <div>
               <p className={styles.username}>{userDetails.userName}</p>
               <p className={styles.email}>{userDetails.userEmail}</p>
+              <button className={styles.btn_ch} onClick={() => setDisplay('flex')}>Reset Password</button>
             </div>
           </div>
           <div className={styles.box_section}>
